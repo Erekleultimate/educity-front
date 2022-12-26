@@ -16,6 +16,7 @@ const Navigation = () => {
           <NavigaitonItem link="/projects" name="პროექტები" />
           <NavigaitonItem link="/social" name="სოც.ქსელი" />
           <Button
+            size="md"
             value="Sign In / Up"
             onClick={() => alert('Sign in / Out clicked')}
           />
