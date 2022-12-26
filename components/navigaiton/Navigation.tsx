@@ -1,13 +1,11 @@
-import Image from 'next/image';
-import { NavigaitonItem, Button } from '../../components';
-import logo from '../../public/logo.png';
+import { NavigaitonItem, Button, Logo } from '../../components';
 
 const Navigation = () => {
   return (
     <header className="sticky top-0 z-50 paddings bg-gray-100 border-b-2 border-green-600">
       <nav className="flex items-center justify-between">
         <div className="relative h-11 w-11">
-          <Image src={logo} layout="fill" alt="logo" />
+          <Logo color="green" />
         </div>
         <ul className="hidden md:flex md:space-x-5 md:text-lg md:font-bold">
           <NavigaitonItem link="/" name="მთავარი" />
