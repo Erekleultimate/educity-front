@@ -1,5 +1,7 @@
+import Image from 'next/image';
 import { PageLayout } from '../layouts';
 import { Button, Hero } from '../components';
+import img from '../public/home-image.png';
 
 import type { NextPage } from 'next';
 
@@ -30,7 +32,9 @@ const HomePage: NextPage = () => {
               onClick={() => alert('დაიწყე clicked')}
             />
           </div>
-          <div className="col-span-1">Right</div>
+          <div className="col-span-1 relative h-60 md:h-auto">
+            <Image src={img} layout="fill" />
+          </div>
         </Hero>
       </div>
     </PageLayout>

@@ -15,7 +15,7 @@ const PageLayout = ({
   children,
 }: PageLayoutProps) => {
   return (
-    <div>
+    <div className="space-y-5">
       <Head>
         <title>{pageTitle}</title>
         <meta name="description" content={pageDescription} />
