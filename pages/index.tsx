@@ -8,11 +8,15 @@ const HomePage: NextPage = () => {
     <PageLayout pageTitle="Home Page" pageDescription="Home page description">
       <div>
         <Hero>
-          <div className="col-span-1">
-            <div>მზად ხარ სწავლისთვის?</div>
-            <h1>
-              <span>ისწავლე ღიმილით</span>
-              <span>ნებისმიერ დროს</span>
+          <div className="col-span-1 space-y-10 text-center md:text-left">
+            <div className="text-red-700">მზად ხარ სწავლისთვის?</div>
+            <h1 className="flex flex-col gap-3">
+              <span className="font-bold text-4xl text-center md:text-left md:text-5xl">
+                ისწავლე ღიმილით
+              </span>
+              <span className="font-bold text-green-600 text-4xl text-center md:text-left md:text-5xl">
+                ნებისმიერ დროს
+              </span>
             </h1>
             <article>
               Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsa
