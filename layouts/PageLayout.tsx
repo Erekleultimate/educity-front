@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import { Navigation } from '../components';
+import { Navigation, Footer } from '../components';
 
 import type { ReactNode } from 'react';
 
@@ -25,7 +25,7 @@ const PageLayout = ({
 
       <main className="paddings">{children}</main>
 
-      <footer className="paddings">Footer</footer>
+      <Footer />
     </div>
   );
 };
