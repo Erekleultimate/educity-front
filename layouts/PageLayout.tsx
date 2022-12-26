@@ -23,9 +23,9 @@ const PageLayout = ({
 
       <Navigation />
 
-      <main>{children}</main>
+      <main className="paddings">{children}</main>
 
-      <footer>Footer</footer>
+      <footer className="paddings">Footer</footer>
     </div>
   );
 };
