@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import { Navigation } from '../components';
 
 import type { ReactNode } from 'react';
 
@@ -8,7 +9,11 @@ interface PageLayoutProps {
   children: ReactNode;
 }
 
-const PageLayout = ({ pageTitle, pageDescription, children }: PageLayoutProps) => {
+const PageLayout = ({
+  pageTitle,
+  pageDescription,
+  children,
+}: PageLayoutProps) => {
   return (
     <div>
       <Head>
@@ -16,7 +21,7 @@ const PageLayout = ({ pageTitle, pageDescription, children }: PageLayoutProps) =
         <meta name="description" content={pageDescription} />
       </Head>
 
-      <header>Header</header>
+      <Navigation />
 
       <main>{children}</main>
 
