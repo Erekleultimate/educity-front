@@ -6,3 +6,4 @@ export { default as Button } from './button/Button';
 export { default as Hero } from './hero/Hero';
 export { default as HeroLeft } from './hero/HeroLeft';
 export { default as HeroRight } from './hero/HeroRight';
+export { default as Card } from './card/Card';
