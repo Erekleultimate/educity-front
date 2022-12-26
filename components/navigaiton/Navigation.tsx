@@ -4,7 +4,7 @@ import logo from '../../public/logo.png';
 
 const Navigation = () => {
   return (
-    <header className="paddings bg-gray-100 border-b-2 border-green-600">
+    <header className="sticky top-0 z-50 paddings bg-gray-100 border-b-2 border-green-600">
       <nav className="flex items-center justify-between">
         <div className="relative h-11 w-11">
           <Image src={logo} layout="fill" alt="logo" />
