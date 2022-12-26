@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { NavigaitonItem } from '../../components';
+import { NavigaitonItem, Button } from '../../components';
 import logo from '../../public/logo.png';
 
 const Navigation = () => {
@@ -15,9 +15,10 @@ const Navigation = () => {
           <NavigaitonItem link="/cources" name="კურსები" />
           <NavigaitonItem link="/projects" name="პროექტები" />
           <NavigaitonItem link="/social" name="სოც.ქსელი" />
-          <button className="bg-green-600 text-gray-100 px-4 rounded-lg border-2 border-green-600 transition duration-300 hover:scale-105 hover:bg-transparent hover:text-green-600">
-            Sign In / Up
-          </button>
+          <Button
+            value="Sign In / Up"
+            onClick={() => alert('Sign in / Out clicked')}
+          />
         </ul>
       </nav>
     </header>
