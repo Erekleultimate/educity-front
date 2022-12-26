@@ -7,3 +7,5 @@ export { default as Hero } from './hero/Hero';
 export { default as HeroLeft } from './hero/HeroLeft';
 export { default as HeroRight } from './hero/HeroRight';
 export { default as Card } from './card/Card';
+export { default as CardImage } from './card/CardImage';
+export { default as CardData } from './card/CardData';
