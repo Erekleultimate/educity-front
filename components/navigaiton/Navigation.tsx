@@ -7,7 +7,7 @@ const Navigation = () => {
     <header className="bg-gray-100 px-14 py-6 border-b-2 border-green-600">
       <nav className="flex items-center justify-between">
         <div className="relative h-11 w-11">
-          <Image src={logo} layout="fill" />
+          <Image src={logo} layout="fill" alt="logo" />
         </div>
         <ul className="flex space-x-5 text-lg font-bold">
           <NavigaitonItem link="/" name="მთავარი" />
