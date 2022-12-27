@@ -1,6 +1,13 @@
+import { MouseEventHandler, useState } from 'react';
 import { MainNavigation, Logo, Bars } from '../../components';
 
 const Navigation = () => {
+  const [isMainNavActive, setIsMainNavActive] = useState<boolean>(false);
+
+  const toggleMainNavActivation: MouseEventHandler<HTMLOrSVGElement> = () => {
+    setIsMainNavActive((prev) => !prev);
+  };
+
   return (
     <header className="sticky top-0 z-40 paddings bg-gray-100 border-b-2 border-green-600">
       <nav className="flex items-center justify-between">
@@ -8,9 +15,12 @@ const Navigation = () => {
           <Logo color="green" />
         </div>
         <div className="md:hidden">
-          <Bars onClick={() => alert('clicked bars')} />
+          <Bars onClick={toggleMainNavActivation} />
         </div>
-        <MainNavigation />
+        <MainNavigation
+          isActive={isMainNavActive}
+          toggleNavActivation={toggleMainNavActivation}
+        />
       </nav>
     </header>
   );

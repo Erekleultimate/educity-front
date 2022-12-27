@@ -17,6 +17,7 @@ const HeroLeft = () => {
         facilis voluptas. Atque.
       </article>
       <Button
+        color="green"
         size="lg"
         value="დაიწყე"
         onClick={() => alert('დაიწყე clicked')}
