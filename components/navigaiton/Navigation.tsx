@@ -9,7 +9,7 @@ const Navigation = () => {
   };
 
   return (
-    <header className="sticky top-0 z-40 paddings bg-gray-100 border-b-2 border-green-600">
+    <header className="sticky top-0 z-30 paddings bg-gray-100 border-b-2 border-green-600">
       <nav className="flex items-center justify-between">
         <div className="relative h-11 w-11">
           <Logo color="green" />

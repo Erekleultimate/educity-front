@@ -11,7 +11,7 @@ const MainNavigation = (props: MainNavigationProps) => {
     <ul
       className={`${
         props.isActive
-          ? 'fixed top-0 bottom-0 left-0 right-0 z-50 bg-green-600 text-center text-white text-lg space-y-10 md:space-y-0'
+          ? 'fixed top-0 bottom-0 left-0 right-0 z-40 bg-green-600 text-center text-white text-lg space-y-10 md:space-y-0'
           : 'hidden'
       } md:bg-transparent md:static md:flex md:space-x-5 md:text-lg md:font-bold md:text-gray-700`}
     >
