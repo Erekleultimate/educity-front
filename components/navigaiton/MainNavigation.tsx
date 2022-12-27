@@ -1,5 +1,7 @@
-import { MouseEventHandler, useState } from 'react';
+import { Dispatch, MouseEventHandler, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { NavigationItem, Button, Times, Overlay, Auth } from '../../components';
+import * as userActions from '../../store/user';
 
 interface MainNavigationProps {
   isActive: boolean;
@@ -7,10 +9,16 @@ interface MainNavigationProps {
 }
 
 const MainNavigation = (props: MainNavigationProps) => {
+  const dispatch: Dispatch<any> = useDispatch();
+  const user = useSelector(userActions.selectUser);
   const [isAuthActive, setIsAuthActive] = useState<boolean>(false);
 
   const toggleAuthActivation: MouseEventHandler<HTMLButtonElement> = () => {
     setIsAuthActive((prev) => !prev);
+  };
+
+  const handleSignOut: MouseEventHandler<HTMLButtonElement> = () => {
+    dispatch(userActions.signOut());
   };
 
   return (
@@ -30,20 +38,38 @@ const MainNavigation = (props: MainNavigationProps) => {
       <NavigationItem link="/projects" name="პროექტები" />
       <NavigationItem link="/social" name="სოც.ქსელი" />
       <div className="hidden md:block">
-        <Button
-          color="green"
-          size="md"
-          value="Sign In / Up"
-          onClick={toggleAuthActivation}
-        />
+        {!user ? (
+          <Button
+            color="green"
+            size="md"
+            value="Sign In / Up"
+            onClick={toggleAuthActivation}
+          />
+        ) : (
+          <Button
+            color="green"
+            size="md"
+            value="გასვლა"
+            onClick={handleSignOut}
+          />
+        )}
       </div>
       <div className="md:hidden">
-        <Button
-          color="white"
-          size="md"
-          value="Sign In / Up"
-          onClick={toggleAuthActivation}
-        />
+        {!user ? (
+          <Button
+            color="white"
+            size="md"
+            value="Sign In / Up"
+            onClick={toggleAuthActivation}
+          />
+        ) : (
+          <Button
+            color="white"
+            size="md"
+            value="გასვლა"
+            onClick={handleSignOut}
+          />
+        )}
       </div>
       {isAuthActive && (
         <Overlay onCloseClick={toggleAuthActivation}>
