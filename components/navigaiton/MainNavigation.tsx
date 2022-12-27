@@ -1,11 +1,5 @@
 import { MouseEventHandler, useState } from 'react';
-import {
-  NavigationItem,
-  Button,
-  Times,
-  Overlay,
-  SignIn,
-} from '../../components';
+import { NavigationItem, Button, Times, Overlay, Auth } from '../../components';
 
 interface MainNavigationProps {
   isActive: boolean;
@@ -53,7 +47,7 @@ const MainNavigation = (props: MainNavigationProps) => {
       </div>
       {isAuthActive && (
         <Overlay onCloseClick={toggleAuthActivation}>
-          <SignIn />
+          <Auth />
         </Overlay>
       )}
     </ul>

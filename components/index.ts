@@ -14,4 +14,6 @@ export { default as Logo } from './logo/Logo';
 export { default as MainNavigation } from './navigaiton/MainNavigation';
 export { default as Overlay } from './overlay/Overlay';
 export { default as SignIn } from './auth/SignIn';
+export { default as SignUp } from './auth/SignUp';
+export { default as Auth } from './auth/Auth';
 export { default as Input } from './input/Input';

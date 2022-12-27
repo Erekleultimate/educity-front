@@ -1,7 +1,7 @@
 import { ChangeEventHandler } from 'react';
 
 interface InputProps {
-  name: 'email' | 'password';
+  name: 'email' | 'confirmEmail' | 'password' | 'confirmPassword';
   value: string;
   onChange: ChangeEventHandler<HTMLInputElement>;
 }
@@ -11,15 +11,22 @@ const typesMap: Record<
   'email' | 'password' | 'text' | 'number'
 > = {
   email: 'email',
+  confirmEmail: 'email',
   password: 'password',
+  confirmPassword: 'password',
 };
 
 const placeHoldersMap: Record<
   InputProps['name'],
-  'შეიყვანე მეილი' | 'შეიყვანე პაროლი'
+  | 'შეიყვანე მეილი'
+  | 'დაადასტურე მეილი'
+  | 'შეიყვანე პაროლი'
+  | 'დაადასტურე პაროლი'
 > = {
   email: 'შეიყვანე მეილი',
+  confirmEmail: 'დაადასტურე მეილი',
   password: 'შეიყვანე პაროლი',
+  confirmPassword: 'დაადასტურე პაროლი',
 };
 
 const Input = (props: InputProps) => {
