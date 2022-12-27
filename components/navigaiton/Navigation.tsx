@@ -1,11 +1,14 @@
-import { NavigaitonItem, Button, Logo } from '../../components';
+import { NavigaitonItem, Button, Logo, Bars } from '../../components';
 
 const Navigation = () => {
   return (
-    <header className="sticky top-0 z-50 paddings bg-gray-100 border-b-2 border-green-600">
+    <header className="sticky top-0 z-40 paddings bg-gray-100 border-b-2 border-green-600">
       <nav className="flex items-center justify-between">
         <div className="relative h-11 w-11">
           <Logo color="green" />
+        </div>
+        <div className="md:hidden">
+          <Bars onClick={() => alert('clicked bars')} />
         </div>
         <ul className="hidden md:flex md:space-x-5 md:text-lg md:font-bold">
           <NavigaitonItem link="/" name="მთავარი" />
