@@ -6,13 +6,28 @@ import {
   PayloadAction,
 } from '@reduxjs/toolkit';
 import * as errorActions from './error';
-import { CLIENT_URL } from '../utils/urls';
+import { API_URL, CLIENT_URL } from '../utils/urls';
 import { SetStateAction } from 'react';
 import { RootState } from '.';
 
 const headers = new Headers();
 headers.set('Accept', 'application/json');
 headers.set('Content-Type', 'application/json');
+
+export const setUser = createAsyncThunk(
+  'user/setUser',
+  async ({}, { dispatch }) => {
+    fetch(`${CLIENT_URL}/api/user/me`)
+      .then(async (resp) => {
+        if (!resp.ok) {
+          throw new Error(resp.statusText);
+        }
+        const user = await resp.json();
+        dispatch(set(user));
+      })
+      .catch((err) => console.log(err.message));
+  }
+);
 
 export const signOut = createAsyncThunk(
   'user/signOut',

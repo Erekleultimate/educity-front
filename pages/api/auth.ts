@@ -26,7 +26,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     })
       .then(async (resp) => {
         if (!resp.ok) {
-          throw Error(resp.statusText);
+          return res.status(resp.status).json(resp);
         }
 
         const { data: user } = await resp.json();
@@ -45,7 +45,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     })
       .then(async (resp) => {
         if (!resp.ok) {
-          throw Error(resp.statusText);
+          return res.status(resp.status).json(resp);
         }
 
         const { data: user } = await resp.json();

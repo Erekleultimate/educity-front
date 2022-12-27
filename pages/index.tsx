@@ -1,10 +1,20 @@
+import { Dispatch, useEffect } from 'react';
 import { PageLayout } from '../layouts';
 import { Hero, HeroLeft, HeroRight, Card } from '../components';
+import { useDispatch, useSelector } from 'react-redux';
+import * as userActions from '../store/user';
 import img from '../public/home-image.png';
 
 import type { NextPage } from 'next';
 
 const HomePage: NextPage = () => {
+  const dispatch: Dispatch<any> = useDispatch();
+  const user = useSelector(userActions.selectUser);
+
+  useEffect(() => {
+    dispatch(userActions.setUser());
+  }, [user?.token, dispatch]);
+
   return (
     <PageLayout pageTitle="Home Page" pageDescription="Home page description">
       <div className="space-y-20">
