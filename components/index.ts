@@ -13,3 +13,5 @@ export { default as Footer } from './footer/Footer';
 export { default as Logo } from './logo/Logo';
 export { default as MainNavigation } from './navigaiton/MainNavigation';
 export { default as Overlay } from './overlay/Overlay';
+export { default as SignIn } from './auth/SignIn';
+export { default as Input } from './input/Input';
