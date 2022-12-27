@@ -77,9 +77,12 @@ const WithLogic = (Component: (props: SignInProps) => JSX.Element) => {
       if (!inputs.password) return alert('პაროლის ველის შევსება სავალდებულოა');
 
       dispatch(
-        userActions.signIn({ email: inputs.email, password: inputs.password })
+        userActions.signIn({
+          email: inputs.email,
+          password: inputs.password,
+          setInputs,
+        })
       );
-      setInputs({ email: '', password: '' });
     };
 
     const onSignUpLinkClick: MouseEventHandler<HTMLDivElement> = () => {

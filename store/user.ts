@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import * as errorActions from './error';
 import * as strapi from '../services/strapi';
 import { CLIENT_URL } from '../utils/urls';
+import { SetStateAction } from 'react';
 
 const headers = new Headers();
 headers.set('Accept', 'application/json');
@@ -20,7 +21,22 @@ export const signOut = createAsyncThunk(
 export const signUp = createAsyncThunk(
   'user/signUp',
   async (
-    { email, password }: { email: string; password: string },
+    {
+      email,
+      password,
+      setInputs,
+    }: {
+      email: string;
+      password: string;
+      setInputs: (
+        value: SetStateAction<{
+          email: string;
+          confirmEmail: string;
+          password: string;
+          confirmPassword: string;
+        }>
+      ) => void;
+    },
     { dispatch }
   ) => {
     fetch(`${CLIENT_URL}/api/auth`, {
@@ -34,6 +50,12 @@ export const signUp = createAsyncThunk(
         }
         const user: user.User = await resp.json();
         dispatch(set(user));
+        setInputs({
+          email: '',
+          confirmEmail: '',
+          password: '',
+          confirmPassword: '',
+        });
       })
       .catch((err) => console.log(err.message));
   }
@@ -42,7 +64,20 @@ export const signUp = createAsyncThunk(
 export const signIn = createAsyncThunk(
   'user/signIn',
   async (
-    { email, password }: { email: string; password: string },
+    {
+      email,
+      password,
+      setInputs,
+    }: {
+      email: string;
+      password: string;
+      setInputs: (
+        value: SetStateAction<{
+          email: string;
+          password: string;
+        }>
+      ) => void;
+    },
     { dispatch }
   ) => {
     fetch(`${CLIENT_URL}/api/auth`, {
@@ -55,8 +90,8 @@ export const signIn = createAsyncThunk(
           throw new Error(resp.statusText);
         }
         const user: user.User = await resp.json();
-        console.log(user);
         dispatch(set(user));
+        setInputs({ email: '', password: '' });
       })
       .catch((err) => console.log(err.message));
   }

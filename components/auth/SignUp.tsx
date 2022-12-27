@@ -103,15 +103,12 @@ const WithLogic = (Component: (props: SignInProps) => JSX.Element) => {
         return alert('პაროლები არ ემთხვევა ერთმანეთს');
 
       dispatch(
-        userActions.signUp({ email: inputs.email, password: inputs.password })
+        userActions.signUp({
+          email: inputs.email,
+          password: inputs.password,
+          setInputs,
+        })
       );
-
-      setInputs({
-        email: '',
-        confirmEmail: '',
-        password: '',
-        confirmPassword: '',
-      });
     };
 
     const onSignInClick: MouseEventHandler<HTMLDivElement> = () => {
