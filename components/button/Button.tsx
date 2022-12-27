@@ -24,7 +24,7 @@ const Button = (props: ButtonProps) => {
     <button
       type="submit"
       onClick={props.onClick}
-      className={`${sizesMap[props.size]} ${colorsMap[props.color]} `}
+      className={`${sizesMap[props.size]} ${colorsMap[props.color]} py-1`}
     >
       {props.value}
     </button>
