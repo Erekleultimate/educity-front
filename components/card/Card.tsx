@@ -14,7 +14,7 @@ interface CardProps {
 const Card = (props: CardProps) => {
   return (
     <Link href={props.link}>
-      <a className="col-span-1 rounded-t-3xl overflow-hidden transition duration-300 hover:scale-105">
+      <a className="col-span-1 rounded-t-3xl overflow-hidden transition duration-300 md:hover:scale-105">
         <CardImage img={props.img} />
         <CardData
           type={props.type}
