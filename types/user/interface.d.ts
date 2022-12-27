@@ -1,23 +1,8 @@
 declare namespace user {
   interface User {
-    id: number;
-    username: string;
+    id: string;
     email: string;
-    projects: project.Response[];
-    provider: string;
-    confirmed: boolean;
-    blocked: boolean;
-    createdAt: string;
-    updatedAt: string;
-    role: user.Role;
-  }
-
-  interface Role {
-    id: number;
-    name: string;
-    description: string;
-    type: 'authenticated' | 'user';
-    createdAt: string;
-    updatedAt: string;
+    image: string;
+    token: string;
   }
 }

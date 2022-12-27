@@ -6,6 +6,8 @@ import {
   useState,
 } from 'react';
 import { Button, Input } from '../../components';
+import { useDispatch } from 'react-redux';
+import * as userActions from '../../store/user';
 
 interface SignInProps {
   email: string;
@@ -68,6 +70,8 @@ interface SignUpWithLogicProps {
 
 const WithLogic = (Component: (props: SignInProps) => JSX.Element) => {
   return function ComponentWithLogic(props: SignUpWithLogicProps): JSX.Element {
+    const dispatch: Dispatch<any> = useDispatch();
+
     const [inputs, setInputs] = useState<{
       email: string;
       confirmEmail: string;
@@ -93,10 +97,15 @@ const WithLogic = (Component: (props: SignInProps) => JSX.Element) => {
       if (!inputs.password) return alert('პაროლის ველის შევსება სავალდებულოა');
       if (!inputs.confirmPassword)
         return alert('პაროლის დადასტურება სავალდებულოა');
+      if (inputs.email !== inputs.confirmEmail)
+        return alert('იმეილები არ ემთხვევა ერთმანეთს');
+      if (inputs.password !== inputs.confirmPassword)
+        return alert('პაროლები არ ემთხვევა ერთმანეთს');
 
-      alert(
-        `${inputs.email} - ${inputs.confirmEmail} - ${inputs.password} - ${inputs.confirmPassword}`
+      dispatch(
+        userActions.signUp({ email: inputs.email, password: inputs.password })
       );
+
       setInputs({
         email: '',
         confirmEmail: '',

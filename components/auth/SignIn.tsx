@@ -5,7 +5,9 @@ import {
   SetStateAction,
   useState,
 } from 'react';
+import { useDispatch } from 'react-redux';
 import { Button, Input } from '../../components';
+import * as userActions from '../../store/user';
 
 interface SignInProps {
   email: string;
@@ -56,6 +58,8 @@ interface SignInWithLogic {
 
 const WithLogic = (Component: (props: SignInProps) => JSX.Element) => {
   return function ComponentWithLogic(props: SignInWithLogic): JSX.Element {
+    const dispatch: Dispatch<any> = useDispatch();
+
     const [inputs, setInputs] = useState<{ email: string; password: string }>({
       email: '',
       password: '',
@@ -72,7 +76,9 @@ const WithLogic = (Component: (props: SignInProps) => JSX.Element) => {
       if (!inputs.email) return alert('მეილის ველის შევსება სავალდებულოა');
       if (!inputs.password) return alert('პაროლის ველის შევსება სავალდებულოა');
 
-      alert(`${inputs.email} - ${inputs.password}`);
+      dispatch(
+        userActions.signIn({ email: inputs.email, password: inputs.password })
+      );
       setInputs({ email: '', password: '' });
     };
 

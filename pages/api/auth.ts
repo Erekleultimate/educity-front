@@ -1,12 +1,13 @@
 import { setToken } from '../../services/cookies';
 import type { NextApiRequest, NextApiResponse } from 'next';
+import { API_URL } from '../../utils/urls';
 
 const headers = new Headers();
 headers.set('Accept', 'application/json');
 headers.set('Content-Type', 'application/json');
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
-  const { identifier, password, type } = req.body;
+  const { email, password, type } = req.body;
 
   if (type === 'sign-out') {
     setToken(req, res, '');
@@ -15,12 +16,11 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   }
 
   type === 'sign-up' &&
-    (await fetch(`http://localhost:1337/api/auth/local/register`, {
+    (await fetch(`${API_URL}/auth/local/register`, {
       method: 'POST',
       headers,
       body: JSON.stringify({
-        username: identifier,
-        email: identifier,
+        email,
         password,
       }),
     })
@@ -29,30 +29,30 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
           throw Error(resp.statusText);
         }
 
-        const user = await resp.json();
+        const { data: user } = await resp.json();
 
-        setToken(req, res, user.jwt);
+        setToken(req, res, user.token);
 
-        return res.status(200).json({ message: 'success' });
+        return res.status(200).json(user);
       })
       .catch((err) => res.status(400).json(err)));
 
   type === 'sign-in' &&
-    (await fetch(`http://localhost:1337/api/auth/local`, {
+    (await fetch(`${API_URL}/auth/local/login`, {
       method: 'POST',
       headers,
-      body: JSON.stringify({ identifier, password }),
+      body: JSON.stringify({ username: email, password }),
     })
       .then(async (resp) => {
         if (!resp.ok) {
           throw Error(resp.statusText);
         }
 
-        const user = await resp.json();
+        const { data: user } = await resp.json();
 
-        setToken(req, res, user.jwt);
+        setToken(req, res, user.token);
 
-        return res.status(200).json({ message: 'success' });
+        return res.status(200).json(user);
       })
       .catch((err) => res.status(400).json(err)));
 };
