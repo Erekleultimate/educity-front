@@ -1,5 +1,5 @@
-import { MouseEventHandler } from 'react';
-import { NavigationItem, Button, Times } from '../../components';
+import { MouseEventHandler, useState } from 'react';
+import { NavigationItem, Button, Times, Overlay } from '../../components';
 
 interface MainNavigationProps {
   isActive: boolean;
@@ -7,6 +7,12 @@ interface MainNavigationProps {
 }
 
 const MainNavigation = (props: MainNavigationProps) => {
+  const [isAuthActive, setIsAuthActive] = useState<boolean>(false);
+
+  const toggleAuthActivation: MouseEventHandler<HTMLButtonElement> = () => {
+    setIsAuthActive((prev) => !prev);
+  };
+
   return (
     <ul
       className={`${
@@ -28,7 +34,7 @@ const MainNavigation = (props: MainNavigationProps) => {
           color="green"
           size="md"
           value="Sign In / Up"
-          onClick={() => alert('Sign in / Out clicked')}
+          onClick={toggleAuthActivation}
         />
       </div>
       <div className="md:hidden">
@@ -36,9 +42,12 @@ const MainNavigation = (props: MainNavigationProps) => {
           color="white"
           size="md"
           value="Sign In / Up"
-          onClick={() => alert('Sign in / Out clicked')}
+          onClick={toggleAuthActivation}
         />
       </div>
+      {isAuthActive && (
+        <Overlay onCloseClick={toggleAuthActivation}>Overlay</Overlay>
+      )}
     </ul>
   );
 };

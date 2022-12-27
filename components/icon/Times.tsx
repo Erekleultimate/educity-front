@@ -7,7 +7,7 @@ interface TimesProps {
 const Times = (props: TimesProps) => {
   return (
     <svg
-      className="mobile"
+      className="cursor-pointer"
       onClick={props.onClick}
       width="20"
       height="20"

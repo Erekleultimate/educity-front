@@ -7,7 +7,7 @@ interface BarsProps {
 const Bars = (props: BarsProps) => {
   return (
     <svg
-      className="mobile"
+      className="cursor-pointer"
       onClick={props.onClick}
       width="32"
       height="32"
