@@ -38,7 +38,7 @@ const Input = (props: InputProps) => {
       placeholder={placeHoldersMap[props.name]}
       value={props.value}
       onChange={props.onChange}
-      className="text-center outline-none rounded-lg py-1"
+      className="text-center outline-none rounded-lg py-1 border-2 border-white"
     />
   );
 };
