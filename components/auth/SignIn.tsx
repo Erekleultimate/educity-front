@@ -18,7 +18,7 @@ interface SignInProps {
 const SignIn = (props: SignInProps) => {
   return (
     <div className="flex flex-col justify-center items-center space-y-10 h-[80vh]">
-      <h2 className="text-5xl text-gray-100">ავტორიზაცია</h2>
+      <h2 className="text-4xl text-gray-100 md:text-5xl">ავტორიზაცია</h2>
       <form
         onSubmit={(event) => event.preventDefault()}
         className="flex flex-col space-y-5 w-[80%] md:w-[30%]"

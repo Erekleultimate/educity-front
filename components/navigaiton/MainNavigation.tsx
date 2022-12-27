@@ -21,7 +21,7 @@ const MainNavigation = (props: MainNavigationProps) => {
           : 'hidden'
       } md:bg-transparent md:static md:flex md:space-x-5 md:text-lg md:font-bold md:text-gray-700`}
     >
-      <div className="flex justify-end pt-8 mb-20 pr-5 md:hidden">
+      <div className="flex justify-end pt-3 mb-20 pr-3 md:hidden">
         <Times onClick={props.toggleNavActivation} />
       </div>
       <NavigationItem link="/" name="მთავარი" />
