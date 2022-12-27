@@ -1,13 +1,13 @@
-import { NavigaitonItem, Button } from '../../components';
+import { NavigationItem, Button } from '../../components';
 
 const MainNavigation = () => {
   return (
     <ul className="hidden md:flex md:space-x-5 md:text-lg md:font-bold">
-      <NavigaitonItem link="/" name="მთავარი" />
-      <NavigaitonItem link="/library" name="ბიბლიოთეკა" />
-      <NavigaitonItem link="/cources" name="კურსები" />
-      <NavigaitonItem link="/projects" name="პროექტები" />
-      <NavigaitonItem link="/social" name="სოც.ქსელი" />
+      <NavigationItem link="/" name="მთავარი" />
+      <NavigationItem link="/library" name="ბიბლიოთეკა" />
+      <NavigationItem link="/cources" name="კურსები" />
+      <NavigationItem link="/projects" name="პროექტები" />
+      <NavigationItem link="/social" name="სოც.ქსელი" />
       <Button
         size="md"
         value="Sign In / Up"
