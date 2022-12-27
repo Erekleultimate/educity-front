@@ -11,3 +11,4 @@ export { default as CardImage } from './card/CardImage';
 export { default as CardData } from './card/CardData';
 export { default as Footer } from './footer/Footer';
 export { default as Logo } from './logo/Logo';
+export { default as MainNavigation } from './navigaiton/MainNavigation';

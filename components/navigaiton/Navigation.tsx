@@ -1,4 +1,4 @@
-import { NavigaitonItem, Button, Logo, Bars } from '../../components';
+import { MainNavigation, Logo, Bars } from '../../components';
 
 const Navigation = () => {
   return (
@@ -10,18 +10,7 @@ const Navigation = () => {
         <div className="md:hidden">
           <Bars onClick={() => alert('clicked bars')} />
         </div>
-        <ul className="hidden md:flex md:space-x-5 md:text-lg md:font-bold">
-          <NavigaitonItem link="/" name="მთავარი" />
-          <NavigaitonItem link="/library" name="ბიბლიოთეკა" />
-          <NavigaitonItem link="/cources" name="კურსები" />
-          <NavigaitonItem link="/projects" name="პროექტები" />
-          <NavigaitonItem link="/social" name="სოც.ქსელი" />
-          <Button
-            size="md"
-            value="Sign In / Up"
-            onClick={() => alert('Sign in / Out clicked')}
-          />
-        </ul>
+        <MainNavigation />
       </nav>
     </header>
   );
