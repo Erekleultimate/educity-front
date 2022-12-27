@@ -113,7 +113,7 @@ export const signIn = createAsyncThunk(
         dispatch(set(user));
         dispatch(errorActions.set(''));
         setInputs({ email: '', password: '' });
-        // Router.reload();
+        Router.reload();
       })
       .catch((err) => dispatch(errorActions.set('არასწორი მეილი ან პაროლი')));
   }
