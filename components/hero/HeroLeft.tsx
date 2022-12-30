@@ -11,8 +11,7 @@ const HeroLeft = () => {
   const dispatch: Dispatch<any> = useDispatch();
 
   const onBeginButtonClick: MouseEventHandler<HTMLButtonElement> = () => {
-    !user && dispatch(authActions.set(true));
-    user && router.push('/dashboard');
+    !user ? dispatch(authActions.set(true)) : router.push('/dashboard');
   };
 
   return (
