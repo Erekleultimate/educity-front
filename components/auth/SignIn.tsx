@@ -6,7 +6,7 @@ import {
   useState,
 } from 'react';
 import { useDispatch } from 'react-redux';
-import { Button, Input } from '../../components';
+import { Button, Input, Error } from '../../components';
 import * as userActions from '../../store/user';
 
 interface SignInProps {
@@ -19,34 +19,37 @@ interface SignInProps {
 
 const SignIn = (props: SignInProps) => {
   return (
-    <div className="flex flex-col justify-center items-center space-y-10 h-[80vh]">
+    <div className="flex flex-col justify-center items-center h-[80vh]">
       <h2 className="text-4xl text-gray-100 md:text-5xl">ავტორიზაცია</h2>
-      <form
-        onSubmit={(event) => event.preventDefault()}
-        className="flex flex-col space-y-5 w-[80%] md:w-[30%]"
-      >
-        <Input
-          name="email"
-          value={props.email}
-          onChange={props.onInputChange}
-        />
-        <Input
-          name="password"
-          value={props.password}
-          onChange={props.onInputChange}
-        />
-        <Button
-          color="white"
-          size="md"
-          value="შესვლა"
-          onClick={props.onButtonClick}
-        />
-      </form>
-      <div
-        onClick={props.onSignUpLinkClick}
-        className="text-gray-100 cursor-pointer transition duration-300 hover:scale-105"
-      >
-        რეგისტრაცია
+      <Error />
+      <div className="flex flex-col items-center w-[100%]">
+        <form
+          onSubmit={(event) => event.preventDefault()}
+          className="flex flex-col space-y-5 w-[80%] md:w-[30%]"
+        >
+          <Input
+            name="email"
+            value={props.email}
+            onChange={props.onInputChange}
+          />
+          <Input
+            name="password"
+            value={props.password}
+            onChange={props.onInputChange}
+          />
+          <Button
+            color="white"
+            size="md"
+            value="შესვლა"
+            onClick={props.onButtonClick}
+          />
+        </form>
+        <div
+          onClick={props.onSignUpLinkClick}
+          className="text-gray-100 cursor-pointer transition duration-300 hover:scale-105"
+        >
+          რეგისტრაცია
+        </div>
       </div>
     </div>
   );
