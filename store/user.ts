@@ -6,7 +6,7 @@ import {
   PayloadAction,
 } from '@reduxjs/toolkit';
 import * as errorActions from './error';
-import { API_URL, CLIENT_URL } from '../utils/urls';
+import { CLIENT_URL } from '../utils/urls';
 import { SetStateAction } from 'react';
 import { RootState } from '.';
 

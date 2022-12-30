@@ -8,6 +8,7 @@ import {
 import { useDispatch } from 'react-redux';
 import { Button, Input, Error } from '../../components';
 import * as userActions from '../../store/user';
+import * as errorActions from '../../store/error';
 
 interface SignInProps {
   email: string;
@@ -22,7 +23,7 @@ const SignIn = (props: SignInProps) => {
     <div className="flex flex-col justify-center items-center h-[80vh]">
       <h2 className="text-4xl text-gray-100 md:text-5xl">ავტორიზაცია</h2>
       <Error />
-      <div className="flex flex-col items-center w-[100%]">
+      <div className="flex flex-col items-center w-[100%] space-y-10">
         <form
           onSubmit={(event) => event.preventDefault()}
           className="flex flex-col space-y-5 w-[80%] md:w-[30%]"
@@ -76,8 +77,10 @@ const WithLogic = (Component: (props: SignInProps) => JSX.Element) => {
     };
 
     const onButtonClick: MouseEventHandler<HTMLButtonElement> = () => {
-      if (!inputs.email) return alert('მეილის ველის შევსება სავალდებულოა');
-      if (!inputs.password) return alert('პაროლის ველის შევსება სავალდებულოა');
+      if (!inputs.email)
+        return dispatch(errorActions.set('მეილის ველის შევსება სავალდებულოა'));
+      if (!inputs.password)
+        return dispatch(errorActions.set('პაროლის ველის შევსება სავალდებულოა'));
 
       dispatch(
         userActions.signIn({
@@ -89,6 +92,7 @@ const WithLogic = (Component: (props: SignInProps) => JSX.Element) => {
     };
 
     const onSignUpLinkClick: MouseEventHandler<HTMLDivElement> = () => {
+      dispatch(errorActions.set(null));
       props.setAuthType('sign up');
     };
 

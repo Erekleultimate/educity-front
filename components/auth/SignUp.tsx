@@ -5,9 +5,10 @@ import {
   SetStateAction,
   useState,
 } from 'react';
-import { Button, Input } from '../../components';
+import { Button, Input, Error } from '../../components';
 import { useDispatch } from 'react-redux';
 import * as userActions from '../../store/user';
+import * as errorActions from '../../store/error';
 
 interface SignInProps {
   email: string;
@@ -21,44 +22,47 @@ interface SignInProps {
 
 const SignUp = (props: SignInProps) => {
   return (
-    <div className="flex flex-col justify-center items-center space-y-10 h-[80vh]">
+    <div className="flex flex-col justify-center items-center h-[80vh]">
       <h2 className="text-4xl text-gray-100 md:text-5xl">რეგისტრაცია</h2>
-      <form
-        onSubmit={(event) => event.preventDefault()}
-        className="flex flex-col space-y-5 w-[80%] md:w-[30%]"
-      >
-        <Input
-          name="email"
-          value={props.email}
-          onChange={props.onInputChange}
-        />
-        <Input
-          name="confirmEmail"
-          value={props.confirmEamil}
-          onChange={props.onInputChange}
-        />
-        <Input
-          name="password"
-          value={props.password}
-          onChange={props.onInputChange}
-        />
-        <Input
-          name="confirmPassword"
-          value={props.confirmPassword}
-          onChange={props.onInputChange}
-        />
-        <Button
-          color="white"
-          size="md"
-          value="შესვლა"
-          onClick={props.onButtonClick}
-        />
-      </form>
-      <div
-        onClick={props.onSignInLinkClick}
-        className="text-gray-100 cursor-pointer transition duration-300 hover:scale-105"
-      >
-        ავტორიზაცია
+      <Error />
+      <div className="flex flex-col items-center w-[100%] space-y-10">
+        <form
+          onSubmit={(event) => event.preventDefault()}
+          className="flex flex-col space-y-5 w-[80%] md:w-[30%]"
+        >
+          <Input
+            name="email"
+            value={props.email}
+            onChange={props.onInputChange}
+          />
+          <Input
+            name="confirmEmail"
+            value={props.confirmEamil}
+            onChange={props.onInputChange}
+          />
+          <Input
+            name="password"
+            value={props.password}
+            onChange={props.onInputChange}
+          />
+          <Input
+            name="confirmPassword"
+            value={props.confirmPassword}
+            onChange={props.onInputChange}
+          />
+          <Button
+            color="white"
+            size="md"
+            value="შესვლა"
+            onClick={props.onButtonClick}
+          />
+        </form>
+        <div
+          onClick={props.onSignInLinkClick}
+          className="text-gray-100 cursor-pointer transition duration-300 hover:scale-105"
+        >
+          ავტორიზაცია
+        </div>
       </div>
     </div>
   );
@@ -92,15 +96,18 @@ const WithLogic = (Component: (props: SignInProps) => JSX.Element) => {
     };
 
     const onButtonClick: MouseEventHandler<HTMLButtonElement> = () => {
-      if (!inputs.email) return alert('მეილის ველის შევსება სავალდებულოა');
-      if (!inputs.confirmEmail) return alert('მეილის დადასტურება სავალდებულოა');
-      if (!inputs.password) return alert('პაროლის ველის შევსება სავალდებულოა');
+      if (!inputs.email)
+        return dispatch(errorActions.set('მეილის ველის შევსება სავალდებულოა'));
+      if (!inputs.confirmEmail)
+        return dispatch(errorActions.set('მეილის დადასტურება სავალდებულოა'));
+      if (!inputs.password)
+        return dispatch(errorActions.set('პაროლის ველის შევსება სავალდებულოა'));
       if (!inputs.confirmPassword)
-        return alert('პაროლის დადასტურება სავალდებულოა');
+        return dispatch(errorActions.set('პაროლის დადასტურება სავალდებულოა'));
       if (inputs.email !== inputs.confirmEmail)
-        return alert('იმეილები არ ემთხვევა ერთმანეთს');
+        return dispatch(errorActions.set('იმეილები არ ემთხვევა ერთმანეთს'));
       if (inputs.password !== inputs.confirmPassword)
-        return alert('პაროლები არ ემთხვევა ერთმანეთს');
+        return dispatch(errorActions.set('პაროლები არ ემთხვევა ერთმანეთს'));
 
       dispatch(
         userActions.signUp({
@@ -112,6 +119,7 @@ const WithLogic = (Component: (props: SignInProps) => JSX.Element) => {
     };
 
     const onSignInClick: MouseEventHandler<HTMLDivElement> = () => {
+      dispatch(errorActions.set(null));
       props.setAuthType('sign in');
     };
 

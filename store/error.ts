@@ -1,5 +1,11 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSelector, createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
+import { RootState } from '.';
+
+export const selectError = createSelector(
+  ({ error: state }: RootState) => state.error,
+  (error) => error
+);
 
 interface IState {
   error: string | null;
