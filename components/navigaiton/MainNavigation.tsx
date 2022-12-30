@@ -1,9 +1,8 @@
-import { Dispatch, MouseEventHandler } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useRouter } from 'next/router';
-import { NavigationItem, Button, Times, Overlay, Auth } from '../../components';
+import { MouseEventHandler } from 'react';
+import { useSelector } from 'react-redux';
+import { NavigationItem, Button, Times } from '../../components';
+import { useAuth } from '../../hooks';
 import * as userActions from '../../store/user';
-import * as authActions from '../../store/auth';
 
 interface MainNavigationProps {
   isActive: boolean;
@@ -11,16 +10,8 @@ interface MainNavigationProps {
 }
 
 const MainNavigation = (props: MainNavigationProps) => {
-  const router = useRouter();
+  const { toggleAuthActivation } = useAuth();
   const user = useSelector(userActions.selectUser);
-  const isAuthActive = useSelector(authActions.selectIsActive);
-  const dispatch: Dispatch<any> = useDispatch();
-
-  const toggleAuthActivation: MouseEventHandler<HTMLButtonElement> = () => {
-    !user
-      ? dispatch(authActions.set(!isAuthActive))
-      : router.push('/dashboard');
-  };
 
   return (
     <ul
@@ -54,11 +45,6 @@ const MainNavigation = (props: MainNavigationProps) => {
           onClick={toggleAuthActivation}
         />
       </div>
-      {isAuthActive && (
-        <Overlay onCloseClick={toggleAuthActivation}>
-          <Auth />
-        </Overlay>
-      )}
     </ul>
   );
 };
