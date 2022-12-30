@@ -9,21 +9,17 @@ interface PageLayoutProps {
   children: ReactNode;
 }
 
-const PageLayout = ({
-  pageTitle,
-  pageDescription,
-  children,
-}: PageLayoutProps) => {
+const PageLayout = (props: PageLayoutProps) => {
   return (
     <div className="space-y-5">
       <Head>
-        <title>{pageTitle}</title>
-        <meta name="description" content={pageDescription} />
+        <title>{props.pageTitle}</title>
+        <meta name="description" content={props.pageDescription} />
       </Head>
 
       <Navigation />
 
-      <main className="paddings">{children}</main>
+      <main className="paddings">{props.children}</main>
 
       <Footer />
     </div>
