@@ -1,5 +1,6 @@
-import { Dispatch, MouseEventHandler, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { MouseEventHandler, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { useRouter } from 'next/router';
 import { NavigationItem, Button, Times, Overlay, Auth } from '../../components';
 import * as userActions from '../../store/user';
 
@@ -9,7 +10,7 @@ interface MainNavigationProps {
 }
 
 const MainNavigation = (props: MainNavigationProps) => {
-  const dispatch: Dispatch<any> = useDispatch();
+  const router = useRouter();
   const user = useSelector(userActions.selectUser);
   const [isAuthActive, setIsAuthActive] = useState<boolean>(false);
 
@@ -17,8 +18,8 @@ const MainNavigation = (props: MainNavigationProps) => {
     setIsAuthActive((prev) => !prev);
   };
 
-  const handleSignOut: MouseEventHandler<HTMLButtonElement> = () => {
-    dispatch(userActions.signOut());
+  const onDashboardButtonClick: MouseEventHandler<HTMLButtonElement> = () => {
+    router.push('/dashboard');
   };
 
   return (
@@ -49,8 +50,8 @@ const MainNavigation = (props: MainNavigationProps) => {
           <Button
             color="green"
             size="md"
-            value="გასვლა"
-            onClick={handleSignOut}
+            value="მართვა"
+            onClick={onDashboardButtonClick}
           />
         )}
       </div>
@@ -66,8 +67,8 @@ const MainNavigation = (props: MainNavigationProps) => {
           <Button
             color="white"
             size="md"
-            value="გასვლა"
-            onClick={handleSignOut}
+            value="მართვა"
+            onClick={onDashboardButtonClick}
           />
         )}
       </div>
