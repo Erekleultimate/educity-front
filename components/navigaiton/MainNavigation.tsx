@@ -43,7 +43,7 @@ const MainNavigation = (props: MainNavigationProps) => {
           <Button
             color="green"
             size="md"
-            value="Sign In / Up"
+            value="შესვლა / რეგისტრაცია"
             onClick={toggleAuthActivation}
           />
         ) : (
@@ -60,7 +60,7 @@ const MainNavigation = (props: MainNavigationProps) => {
           <Button
             color="white"
             size="md"
-            value="Sign In / Up"
+            value="შესვლა / რეგისტრაცია"
             onClick={toggleAuthActivation}
           />
         ) : (
