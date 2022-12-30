@@ -50,7 +50,7 @@ const MainNavigation = (props: MainNavigationProps) => {
           <Button
             color="green"
             size="md"
-            value="მართვა"
+            value={user.email}
             onClick={onDashboardButtonClick}
           />
         )}
@@ -67,7 +67,7 @@ const MainNavigation = (props: MainNavigationProps) => {
           <Button
             color="white"
             size="md"
-            value="მართვა"
+            value={user.email}
             onClick={onDashboardButtonClick}
           />
         )}
