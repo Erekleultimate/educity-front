@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import Image, { StaticImageData } from 'next/image';
 import whiteLogo from '../../public/logo-white.png';
 import greenLogo from '../../public/logo.png';
@@ -13,9 +14,11 @@ const colorsMap: Record<LogoProps['color'], string | StaticImageData> = {
 
 const Logo = (props: LogoProps) => {
   return (
-    <div>
-      <Image src={colorsMap[props.color]} alt="Logo" />
-    </div>
+    <Link href="/">
+      <a>
+        <Image src={colorsMap[props.color]} alt="Logo" />
+      </a>
+    </Link>
   );
 };
 
