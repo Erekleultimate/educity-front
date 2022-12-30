@@ -17,11 +17,9 @@ const MainNavigation = (props: MainNavigationProps) => {
   const dispatch: Dispatch<any> = useDispatch();
 
   const toggleAuthActivation: MouseEventHandler<HTMLButtonElement> = () => {
-    dispatch(authActions.set(!isAuthActive));
-  };
-
-  const onDashboardButtonClick: MouseEventHandler<HTMLButtonElement> = () => {
-    router.push('/dashboard');
+    !user
+      ? dispatch(authActions.set(!isAuthActive))
+      : router.push('/dashboard');
   };
 
   return (
@@ -41,38 +39,20 @@ const MainNavigation = (props: MainNavigationProps) => {
       <NavigationItem link="/projects" name="პროექტები" />
       <NavigationItem link="/social" name="სოც.ქსელი" />
       <div className="hidden md:block">
-        {!user ? (
-          <Button
-            color="green"
-            size="md"
-            value="შესვლა / რეგისტრაცია"
-            onClick={toggleAuthActivation}
-          />
-        ) : (
-          <Button
-            color="green"
-            size="md"
-            value={user.email}
-            onClick={onDashboardButtonClick}
-          />
-        )}
+        <Button
+          color="green"
+          size="md"
+          value={!user ? 'შესვლა / რეგისტრაცია' : user.email}
+          onClick={toggleAuthActivation}
+        />
       </div>
       <div className="md:hidden">
-        {!user ? (
-          <Button
-            color="white"
-            size="md"
-            value="შესვლა / რეგისტრაცია"
-            onClick={toggleAuthActivation}
-          />
-        ) : (
-          <Button
-            color="white"
-            size="md"
-            value={user.email}
-            onClick={onDashboardButtonClick}
-          />
-        )}
+        <Button
+          color="white"
+          size="md"
+          value={!user ? 'შესვლა / რეგისტრაცია' : user.email}
+          onClick={toggleAuthActivation}
+        />
       </div>
       {isAuthActive && (
         <Overlay onCloseClick={toggleAuthActivation}>
