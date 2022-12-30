@@ -90,7 +90,7 @@ export const signUp = createAsyncThunk(
         });
         Router.reload();
       })
-      .catch((err) =>
+      .catch(() =>
         dispatch(errorActions.set('მეილით უკვე დარეგისტრირებულია მომხმარებელი'))
       );
   }
@@ -130,7 +130,7 @@ export const signIn = createAsyncThunk(
         setInputs({ email: '', password: '' });
         Router.reload();
       })
-      .catch((err) => dispatch(errorActions.set('არასწორი მეილი ან პაროლი')));
+      .catch(() => dispatch(errorActions.set('არასწორი მეილი ან პაროლი')));
   }
 );
 

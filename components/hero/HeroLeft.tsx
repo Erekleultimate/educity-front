@@ -1,6 +1,15 @@
+import { Dispatch, MouseEventHandler } from 'react';
+import { useDispatch } from 'react-redux';
 import { Button } from '../../components';
+import * as authActions from '../../store/auth';
 
 const HeroLeft = () => {
+  const dispatch: Dispatch<any> = useDispatch();
+
+  const onBeginButtonClick: MouseEventHandler<HTMLButtonElement> = () => {
+    dispatch(authActions.set(true));
+  };
+
   return (
     <div className="col-span-1 space-y-10 text-center md:text-left">
       <div className="text-red-700">მზად ხარ სწავლისთვის?</div>
@@ -20,7 +29,7 @@ const HeroLeft = () => {
         color="green"
         size="lg"
         value="დაიწყე"
-        onClick={() => alert('დაიწყე clicked')}
+        onClick={onBeginButtonClick}
       />
     </div>
   );

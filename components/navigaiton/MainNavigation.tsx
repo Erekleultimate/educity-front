@@ -1,8 +1,9 @@
-import { MouseEventHandler, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { Dispatch, MouseEventHandler } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
 import { NavigationItem, Button, Times, Overlay, Auth } from '../../components';
 import * as userActions from '../../store/user';
+import * as authActions from '../../store/auth';
 
 interface MainNavigationProps {
   isActive: boolean;
@@ -12,10 +13,11 @@ interface MainNavigationProps {
 const MainNavigation = (props: MainNavigationProps) => {
   const router = useRouter();
   const user = useSelector(userActions.selectUser);
-  const [isAuthActive, setIsAuthActive] = useState<boolean>(false);
+  const isAuthActive = useSelector(authActions.selectIsActive);
+  const dispatch: Dispatch<any> = useDispatch();
 
   const toggleAuthActivation: MouseEventHandler<HTMLButtonElement> = () => {
-    setIsAuthActive((prev) => !prev);
+    dispatch(authActions.set(!isAuthActive));
   };
 
   const onDashboardButtonClick: MouseEventHandler<HTMLButtonElement> = () => {
