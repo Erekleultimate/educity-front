@@ -17,11 +17,9 @@ const HeroLeft = () => {
   return (
     <div className="col-span-1 space-y-10 text-center md:text-left">
       <div className="text-red-700">მზად ხარ სწავლისთვის?</div>
-      <h1 className="flex flex-col gap-3">
-        <span className="font-bold text-4xl md:text-5xl">ისწავლე ღიმილით</span>
-        <span className="font-bold text-green-600 text-4xl md:text-5xl">
-          ნებისმიერ დროს
-        </span>
+      <h1 className="flex flex-col gap-3 font-bold text-4xl md:text-5xl">
+        <span>ისწავლე ღიმილით</span>
+        <span className="text-green-600">ნებისმიერ დროს</span>
       </h1>
       <article className="text-gray-600">
         Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsa vitae
