@@ -1,13 +1,18 @@
 import { Dispatch, MouseEventHandler } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useRouter } from 'next/router';
 import { Button } from '../../components';
+import * as userActions from '../../store/user';
 import * as authActions from '../../store/auth';
 
 const HeroLeft = () => {
+  const router = useRouter();
+  const user = useSelector(userActions.selectUser);
   const dispatch: Dispatch<any> = useDispatch();
 
   const onBeginButtonClick: MouseEventHandler<HTMLButtonElement> = () => {
-    dispatch(authActions.set(true));
+    !user && dispatch(authActions.set(true));
+    user && router.push('/dashboard');
   };
 
   return (
