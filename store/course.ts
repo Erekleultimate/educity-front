@@ -37,7 +37,7 @@ export const createCourse = createAsyncThunk(
       setInputs,
       setImages,
     }: {
-      owner: string;
+      owner: user.User;
       type: string;
       name: string;
       place: string;
@@ -53,12 +53,11 @@ export const createCourse = createAsyncThunk(
       ) => void;
       setImages: (value: SetStateAction<FileList | null | undefined>) => void;
     },
-    { dispatch }
+    {}
   ) => {
     api
       .createCourse(owner, type, name, place, price, image)
-      .then((course) => {
-        console.log(course);
+      .then(() => {
         setInputs({ type: '', name: '', place: '', price: '' });
         setImages(null);
       })
@@ -86,9 +85,12 @@ export const courseSlice = createSlice({
     set: (state: IState, action: PayloadAction<course.Model[]>) => {
       state.courses = action.payload;
     },
+    add: (state: IState, action: PayloadAction<course.Model>) => {
+      state.courses = [...state.courses, action.payload];
+    },
   },
 });
 
-export const { set } = courseSlice.actions;
+export const { set, add } = courseSlice.actions;
 
 export default courseSlice.reducer;

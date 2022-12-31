@@ -1,5 +1,7 @@
 import { API_URL } from '../utils/urls';
 
+const headers = new Headers();
+
 export const getAllCourses = () => {
   return new Promise((resolve: (courses: course.Model[]) => void, reject) => {
     fetch(`${API_URL}/course`)
@@ -15,7 +17,7 @@ export const getAllCourses = () => {
 };
 
 export const createCourse = (
-  owner: string,
+  owner: user.User,
   type: string,
   name: string,
   place: string,
@@ -23,8 +25,9 @@ export const createCourse = (
   image: File
 ) => {
   return new Promise((resolve: (course: course.Model) => void, reject) => {
+    headers.set('Authorization', `Bearer ${owner.token}`);
     const formData = new FormData();
-    formData.append('owner', owner);
+    formData.append('owner', owner.email);
     formData.append('type', type);
     formData.append('name', name);
     formData.append('place', place);
@@ -32,6 +35,7 @@ export const createCourse = (
     formData.append('courseImage', image, image.name);
     fetch(`${API_URL}/course`, {
       method: 'POST',
+      headers,
       body: formData,
     })
       .then(async (resp) => {

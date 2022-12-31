@@ -23,7 +23,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       }
 
       const { data: user } = await resp.json();
-      return res.status(200).json(user);
+      return res.status(200).json({ ...user, token: token });
     })
     .catch((err) => res.status(401).json(err.message));
 };

@@ -51,7 +51,7 @@ const UserDashboardPage: NextPage = () => {
           place: inputs.place,
           price: inputs.price,
           image: images[0],
-          owner: user.email,
+          owner: user,
           setInputs,
           setImages,
         })
