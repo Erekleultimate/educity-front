@@ -52,11 +52,10 @@ const UserDashboardPage: NextPage = () => {
           price: inputs.price,
           image: images[0],
           owner: user.email,
+          setInputs,
+          setImages,
         })
       );
-
-    setInputs({ type: '', name: '', place: '', price: '' });
-    setImages(null);
   };
 
   return (

@@ -4,6 +4,7 @@ import {
   createSlice,
   PayloadAction,
 } from '@reduxjs/toolkit';
+import { SetStateAction } from 'react';
 import { RootState } from '.';
 import * as api from '../services/api';
 
@@ -33,6 +34,8 @@ export const createCourse = createAsyncThunk(
       place,
       price,
       image,
+      setInputs,
+      setImages,
     }: {
       owner: string;
       type: string;
@@ -40,6 +43,15 @@ export const createCourse = createAsyncThunk(
       place: string;
       price: string;
       image: File;
+      setInputs: (
+        value: SetStateAction<{
+          type: string;
+          name: string;
+          place: string;
+          price: string;
+        }>
+      ) => void;
+      setImages: (value: SetStateAction<FileList | null | undefined>) => void;
     },
     { dispatch }
   ) => {
@@ -47,6 +59,8 @@ export const createCourse = createAsyncThunk(
       .createCourse(owner, type, name, place, price, image)
       .then((course) => {
         console.log(course);
+        setInputs({ type: '', name: '', place: '', price: '' });
+        setImages(null);
       })
       .catch((err) => console.log(err.message));
   }
