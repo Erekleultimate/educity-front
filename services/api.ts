@@ -1,5 +1,19 @@
 import { API_URL } from '../utils/urls';
 
+export const getAllCourses = () => {
+  return new Promise((resolve: (courses: course.Model[]) => void, reject) => {
+    fetch(`${API_URL}/course`)
+      .then(async (resp) => {
+        if (!resp.ok) {
+          reject(resp);
+        }
+        const { data: courses } = await resp.json();
+        resolve(courses);
+      })
+      .catch((err) => reject(err));
+  });
+};
+
 export const createCourse = (
   owner: string,
   type: string,

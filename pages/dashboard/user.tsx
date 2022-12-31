@@ -25,6 +25,7 @@ const UserDashboardPage: NextPage = () => {
 
   useEffect(() => {
     dispatch(userActions.setUser());
+    dispatch(courseActions.setAllCourses());
   }, [dispatch]);
 
   const onInputChange: ChangeEventHandler<HTMLInputElement> = (event) => {
