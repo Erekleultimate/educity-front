@@ -24,7 +24,9 @@ const Button = (props: ButtonProps) => {
     <button
       type="submit"
       onClick={props.onClick}
-      className={`${sizesMap[props.size]} ${colorsMap[props.color]} py-1`}
+      className={`${sizesMap[props.size]} ${
+        colorsMap[props.color]
+      } py-1 shadow-lg active:shadow-none`}
     >
       {props.value}
     </button>
