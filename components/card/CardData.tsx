@@ -12,8 +12,8 @@ const CardData = (props: CardDataProps) => {
       <h5>{props.place}</h5>
       <h3 className="text-xl">{props.name}</h3>
       <h4 className="text-xl font-bold space-x-1">
-        <span>₾</span>
         <span>{props.price}</span>
+        <span>₾</span>
       </h4>
     </div>
   );
