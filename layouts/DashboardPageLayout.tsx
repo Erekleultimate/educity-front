@@ -22,6 +22,7 @@ const DashboardPageLayout = (props: DashboarPageLayoutProps) => {
       <Head>
         <title>{props.pageTitle}</title>
         <meta name="description" content={props.pageDescription} />
+        <link rel="icon" href="/logo.png" />
       </Head>
       <Button color="green" size="md" value="გასვლა" onClick={handleSignOut} />
       <main>{props.children}</main>

@@ -15,6 +15,7 @@ const PageLayout = (props: PageLayoutProps) => {
       <Head>
         <title>{props.pageTitle}</title>
         <meta name="description" content={props.pageDescription} />
+        <link rel="icon" href="/logo.png" />
       </Head>
 
       <Navigation />
