@@ -1,15 +1,35 @@
+import { useState, MouseEventHandler, ChangeEventHandler } from 'react';
 import Head from 'next/head';
-import { Navigation, Footer } from '../components';
+import {
+  Navigation,
+  Footer,
+  Logo,
+  Input,
+  Bars,
+  MainNavigation,
+} from '../components';
 
 import type { ReactNode } from 'react';
 
 interface PageLayoutProps {
   pageTitle: string;
   pageDescription: string;
+  withSearch: boolean;
   children: ReactNode;
 }
 
 const PageLayout = (props: PageLayoutProps) => {
+  const [isMainNavActive, setIsMainNavActive] = useState<boolean>(false);
+
+  const toggleMainNavActivation: MouseEventHandler<HTMLOrSVGElement> = () => {
+    setIsMainNavActive((prev) => !prev);
+  };
+
+  const onSearchChange: ChangeEventHandler<HTMLInputElement> = (event) => {
+    // TODO: set search query logic
+    console.log(event.target.value);
+  };
+
   return (
     <div className="space-y-5">
       <Head>
@@ -18,7 +38,21 @@ const PageLayout = (props: PageLayoutProps) => {
         <link rel="icon" href="/logo.png" />
       </Head>
 
-      <Navigation />
+      <Navigation>
+        <div className="relative h-11 w-11">
+          <Logo color="green" />
+        </div>
+        {props.withSearch && (
+          <Input name="search" value="" onChange={onSearchChange} />
+        )}
+        <div className="md:hidden">
+          <Bars onClick={toggleMainNavActivation} />
+        </div>
+        <MainNavigation
+          isActive={isMainNavActive}
+          toggleNavActivation={toggleMainNavActivation}
+        />
+      </Navigation>
 
       <main className="paddings">{props.children}</main>
 

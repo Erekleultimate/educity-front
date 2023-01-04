@@ -25,6 +25,7 @@ const HomePage: NextPage = () => {
     <PageLayout
       pageTitle="EduCity | Home"
       pageDescription="Home page description"
+      withSearch={false}
     >
       <div className="space-y-20">
         <Hero>

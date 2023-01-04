@@ -22,6 +22,7 @@ const CoursesPage: NextPage = () => {
     <PageLayout
       pageTitle="EduCity | Courses"
       pageDescription="Courses page description"
+      withSearch={true}
     >
       <div className="min-h-screen">Courses Page</div>
       {isAuthActive && (
