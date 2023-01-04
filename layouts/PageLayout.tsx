@@ -12,11 +12,15 @@ import {
   Input,
   Bars,
   MainNavigation,
+  Overlay,
+  Auth,
 } from '../components';
 
 import type { ReactNode } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import * as searchActinos from '../store/search';
+import * as authActions from '../store/auth';
+import { useAuth } from '../hooks';
 
 interface PageLayoutProps {
   pageTitle: string;
@@ -26,9 +30,11 @@ interface PageLayoutProps {
 }
 
 const PageLayout = (props: PageLayoutProps) => {
+  const { toggleAuthActivation } = useAuth();
   const dispatch: Dispatch<any> = useDispatch();
   const [isMainNavActive, setIsMainNavActive] = useState<boolean>(false);
   const searchQuery = useSelector(searchActinos.selectSearch);
+  const isAuthActive = useSelector(authActions.selectIsActive);
 
   const toggleMainNavActivation: MouseEventHandler<HTMLOrSVGElement> = () => {
     setIsMainNavActive((prev) => !prev);
@@ -63,6 +69,12 @@ const PageLayout = (props: PageLayoutProps) => {
       </Navigation>
 
       <main className="paddings">{props.children}</main>
+
+      {isAuthActive && (
+        <Overlay onCloseClick={toggleAuthActivation}>
+          <Auth />
+        </Overlay>
+      )}
 
       <Footer />
     </div>

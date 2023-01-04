@@ -1,20 +1,16 @@
 import { Dispatch, useEffect } from 'react';
 import { PageLayout } from '../layouts';
-import { Hero, HeroLeft, HeroRight, Card, Overlay, Auth } from '../components';
-import { useAuth } from '../hooks';
+import { Hero, HeroLeft, HeroRight, Card } from '../components';
 import { useDispatch, useSelector } from 'react-redux';
 import * as userActions from '../store/user';
-import * as authActions from '../store/auth';
 import * as courseActions from '../store/course';
 
 import type { NextPage } from 'next';
 
 const HomePage: NextPage = () => {
-  const { toggleAuthActivation } = useAuth();
   const dispatch: Dispatch<any> = useDispatch();
   const user = useSelector(userActions.selectUser);
   const courses = useSelector(courseActions.selectAllCourses);
-  const isAuthActive = useSelector(authActions.selectIsActive);
 
   useEffect(() => {
     dispatch(userActions.setUser());
@@ -46,11 +42,6 @@ const HomePage: NextPage = () => {
           ))}
         </div>
       </div>
-      {isAuthActive && (
-        <Overlay onCloseClick={toggleAuthActivation}>
-          <Auth />
-        </Overlay>
-      )}
     </PageLayout>
   );
 };
