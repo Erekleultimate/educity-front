@@ -20,14 +20,14 @@ interface PageLayoutProps {
 
 const PageLayout = (props: PageLayoutProps) => {
   const [isMainNavActive, setIsMainNavActive] = useState<boolean>(false);
+  const [searchQuery, setSearchQuery] = useState<string>('');
 
   const toggleMainNavActivation: MouseEventHandler<HTMLOrSVGElement> = () => {
     setIsMainNavActive((prev) => !prev);
   };
 
   const onSearchChange: ChangeEventHandler<HTMLInputElement> = (event) => {
-    // TODO: set search query logic
-    console.log(event.target.value);
+    setSearchQuery(event.target.value);
   };
 
   return (
@@ -43,7 +43,7 @@ const PageLayout = (props: PageLayoutProps) => {
           <Logo color="green" />
         </div>
         {props.withSearch && (
-          <Input name="search" value="" onChange={onSearchChange} />
+          <Input name="search" value={searchQuery} onChange={onSearchChange} />
         )}
         <div className="md:hidden">
           <Bars onClick={toggleMainNavActivation} />
