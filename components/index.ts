@@ -18,3 +18,4 @@ export { default as SignUp } from './auth/SignUp';
 export { default as Auth } from './auth/Auth';
 export { default as Input } from './input/Input';
 export { default as Error } from './error/Error';
+export { default as Courses } from './courses/Courses';

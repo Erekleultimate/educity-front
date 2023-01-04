@@ -1,7 +1,7 @@
 import { NextPage } from 'next';
 import { useSelector } from 'react-redux';
 import { PageLayout } from '../layouts';
-import { Card } from '../components';
+import { Card, Courses } from '../components';
 import * as courseActions from '../store/course';
 import * as searchActions from '../store/search';
 import { RootState } from '../store';
@@ -19,7 +19,7 @@ const CoursesPage: NextPage = () => {
       withSearch={true}
     >
       <div className="min-h-screen">
-        <div className="grid grid-cols-1 gap-14 md:grid-cols-3">
+        <Courses>
           {filteredCourses.map((course) => (
             <Card
               key={course.id}
@@ -31,7 +31,7 @@ const CoursesPage: NextPage = () => {
               price={course.price}
             />
           ))}
-        </div>
+        </Courses>
       </div>
     </PageLayout>
   );

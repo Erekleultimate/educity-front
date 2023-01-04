@@ -1,5 +1,5 @@
 import { PageLayout } from '../layouts';
-import { Hero, HeroLeft, HeroRight, Card } from '../components';
+import { Hero, HeroLeft, HeroRight, Card, Courses } from '../components';
 import { useSelector } from 'react-redux';
 import * as courseActions from '../store/course';
 
@@ -19,7 +19,7 @@ const HomePage: NextPage = () => {
           <HeroLeft />
           <HeroRight />
         </Hero>
-        <div className="grid grid-cols-1 gap-14 md:grid-cols-3">
+        <Courses>
           {courses.map((course) => (
             <Card
               key={course.id}
@@ -31,7 +31,7 @@ const HomePage: NextPage = () => {
               price={course.price}
             />
           ))}
-        </div>
+        </Courses>
       </div>
     </PageLayout>
   );
