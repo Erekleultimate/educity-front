@@ -10,7 +10,8 @@ interface InputProps {
     | 'name'
     | 'place'
     | 'price'
-    | 'image';
+    | 'image'
+    | 'search';
   value?: string;
   onChange: ChangeEventHandler<HTMLInputElement>;
 }
@@ -28,6 +29,7 @@ const typesMap: Record<
   place: 'text',
   price: 'text',
   image: 'file',
+  search: 'text',
 };
 
 const placeHoldersMap: Record<
@@ -41,6 +43,7 @@ const placeHoldersMap: Record<
   | 'შეიყვანე ადგილი'
   | 'შეიყვანე ფასი'
   | 'აირჩიე სურათი'
+  | 'იპოვნე კურსი'
 > = {
   email: 'შეიყვანე მეილი',
   confirmEmail: 'დაადასტურე მეილი',
@@ -51,6 +54,7 @@ const placeHoldersMap: Record<
   place: 'შეიყვანე ადგილი',
   price: 'შეიყვანე ფასი',
   image: 'აირჩიე სურათი',
+  search: 'იპოვნე კურსი',
 };
 
 const Input = (props: InputProps) => {
