@@ -22,7 +22,10 @@ const HomePage: NextPage = () => {
   }, [user?.token, dispatch]);
 
   return (
-    <PageLayout pageTitle="Home Page" pageDescription="Home page description">
+    <PageLayout
+      pageTitle="EduCity | Home"
+      pageDescription="Home page description"
+    >
       <div className="space-y-20">
         <Hero>
           <HeroLeft />
