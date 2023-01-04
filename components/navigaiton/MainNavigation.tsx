@@ -25,10 +25,10 @@ const MainNavigation = (props: MainNavigationProps) => {
         <Times onClick={props.toggleNavActivation} />
       </div>
       <NavigationItem link="/" name="მთავარი" />
-      <NavigationItem link="/library" name="ბიბლიოთეკა" />
-      <NavigationItem link="/cources" name="კურსები" />
-      <NavigationItem link="/projects" name="პროექტები" />
-      <NavigationItem link="/social" name="სოც.ქსელი" />
+      {/* <NavigationItem link="/library" name="ბიბლიოთეკა" /> */}
+      <NavigationItem link="/courses" name="კურსები" />
+      {/* <NavigationItem link="/projects" name="პროექტები" /> */}
+      {/* <NavigationItem link="/social" name="სოც.ქსელი" /> */}
       <div className="hidden md:block">
         <Button
           color="green"
