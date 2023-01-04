@@ -1,21 +1,12 @@
-import { Dispatch, useEffect } from 'react';
 import { PageLayout } from '../layouts';
 import { Hero, HeroLeft, HeroRight, Card } from '../components';
-import { useDispatch, useSelector } from 'react-redux';
-import * as userActions from '../store/user';
+import { useSelector } from 'react-redux';
 import * as courseActions from '../store/course';
 
 import type { NextPage } from 'next';
 
 const HomePage: NextPage = () => {
-  const dispatch: Dispatch<any> = useDispatch();
-  const user = useSelector(userActions.selectUser);
   const courses = useSelector(courseActions.selectAllCourses);
-
-  useEffect(() => {
-    dispatch(userActions.setUser());
-    dispatch(courseActions.setAllCourses());
-  }, [user?.token, dispatch]);
 
   return (
     <PageLayout

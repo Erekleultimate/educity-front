@@ -1,24 +1,16 @@
-import { Dispatch, useEffect } from 'react';
 import { NextPage } from 'next';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { PageLayout } from '../layouts';
 import { Card } from '../components';
-import * as userActions from '../store/user';
 import * as courseActions from '../store/course';
 import * as searchActions from '../store/search';
 import { RootState } from '../store';
 
 const CoursesPage: NextPage = () => {
-  const dispatch: Dispatch<any> = useDispatch();
   const searchQuery = useSelector(searchActions.selectSearch);
   const filteredCourses = useSelector((state: RootState) =>
     courseActions.selectCoursesWithTitle(state, searchQuery)
   );
-
-  useEffect(() => {
-    dispatch(userActions.setUser());
-    dispatch(courseActions.setAllCourses());
-  }, [dispatch]);
 
   return (
     <PageLayout

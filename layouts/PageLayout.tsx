@@ -3,6 +3,7 @@ import {
   MouseEventHandler,
   ChangeEventHandler,
   Dispatch,
+  useEffect,
 } from 'react';
 import Head from 'next/head';
 import {
@@ -20,6 +21,8 @@ import type { ReactNode } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import * as searchActinos from '../store/search';
 import * as authActions from '../store/auth';
+import * as userActions from '../store/user';
+import * as courseActions from '../store/course';
 import { useAuth } from '../hooks';
 
 interface PageLayoutProps {
@@ -32,9 +35,15 @@ interface PageLayoutProps {
 const PageLayout = (props: PageLayoutProps) => {
   const { toggleAuthActivation } = useAuth();
   const dispatch: Dispatch<any> = useDispatch();
+  const user = useSelector(userActions.selectUser);
   const [isMainNavActive, setIsMainNavActive] = useState<boolean>(false);
   const searchQuery = useSelector(searchActinos.selectSearch);
   const isAuthActive = useSelector(authActions.selectIsActive);
+
+  useEffect(() => {
+    dispatch(userActions.setUser());
+    dispatch(courseActions.setAllCourses());
+  }, [user?.token, dispatch]);
 
   const toggleMainNavActivation: MouseEventHandler<HTMLOrSVGElement> = () => {
     setIsMainNavActive((prev) => !prev);
