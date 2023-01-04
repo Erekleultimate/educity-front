@@ -1,4 +1,5 @@
 import { ChangeEventHandler } from 'react';
+import { BiSearch } from 'react-icons/bi';
 
 interface InputProps {
   name:
@@ -58,7 +59,7 @@ const placeHoldersMap: Record<
 };
 
 const Input = (props: InputProps) => {
-  return (
+  return props.name !== 'search' ? (
     <input
       autoComplete="off"
       name={props.name}
@@ -68,6 +69,19 @@ const Input = (props: InputProps) => {
       onChange={props.onChange}
       className="text-center outline-none rounded-lg py-1 border-2 border-white text-black"
     />
+  ) : (
+    <div className="flex items-center bg-white rounded-lg px-2 space-x-3 shadow-md">
+      <BiSearch className="text-2xl text-green-600" />
+      <input
+        autoComplete="off"
+        name={props.name}
+        type={typesMap[props.name]}
+        placeholder={placeHoldersMap[props.name]}
+        value={props.value}
+        onChange={props.onChange}
+        className="outline-none  py-1 border-2 border-transparent bg-transparent text-black w-48 md:w-auto"
+      />
+    </div>
   );
 };
 
