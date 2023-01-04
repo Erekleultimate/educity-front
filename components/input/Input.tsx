@@ -70,8 +70,8 @@ const Input = (props: InputProps) => {
       className="text-center outline-none rounded-lg py-1 border-2 border-white text-black"
     />
   ) : (
-    <div className="flex items-center bg-white rounded-lg px-2 space-x-3 shadow-md">
-      <BiSearch className="text-2xl text-green-600" />
+    <div className="flex items-center bg-green-600 rounded-lg px-2 space-x-3 shadow-md">
+      <BiSearch className="text-2xl text-gray-200" />
       <input
         autoComplete="off"
         name={props.name}
@@ -79,7 +79,7 @@ const Input = (props: InputProps) => {
         placeholder={placeHoldersMap[props.name]}
         value={props.value}
         onChange={props.onChange}
-        className="outline-none  py-1 border-2 border-transparent bg-transparent text-black w-48 md:w-auto"
+        className="outline-none  py-1 border-2 border-transparent bg-transparent text-white placeholder-gray-200 w-48 md:w-auto"
       />
     </div>
   );
