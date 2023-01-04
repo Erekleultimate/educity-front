@@ -1,4 +1,5 @@
 import { MouseEventHandler } from 'react';
+import { useRouter } from 'next/router';
 import { useSelector } from 'react-redux';
 import { NavigationItem, Button, Times } from '../../components';
 import { useAuth } from '../../hooks';
@@ -10,6 +11,7 @@ interface MainNavigationProps {
 }
 
 const MainNavigation = (props: MainNavigationProps) => {
+  const router = useRouter();
   const { toggleAuthActivation } = useAuth();
   const user = useSelector(userActions.selectUser);
 
@@ -24,9 +26,17 @@ const MainNavigation = (props: MainNavigationProps) => {
       <div className="flex justify-end pt-3 mb-20 pr-3 md:hidden">
         <Times onClick={props.toggleNavActivation} />
       </div>
-      <NavigationItem link="/" name="მთავარი" />
+      <NavigationItem
+        link="/"
+        name="მთავარი"
+        active={router.pathname === '/'}
+      />
       {/* <NavigationItem link="/library" name="ბიბლიოთეკა" /> */}
-      <NavigationItem link="/courses" name="კურსები" />
+      <NavigationItem
+        link="/courses"
+        name="კურსები"
+        active={router.pathname === '/courses'}
+      />
       {/* <NavigationItem link="/projects" name="პროექტები" /> */}
       {/* <NavigationItem link="/social" name="სოც.ქსელი" /> */}
       <div className="hidden md:block">
