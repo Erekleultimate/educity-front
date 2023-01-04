@@ -70,6 +70,15 @@ export const selectAllCourses = createSelector(
   (courses) => courses
 );
 
+export const selectCoursesWithTitle = createSelector(
+  ({ courses: state }: RootState) => state.courses,
+  (_: RootState, query: string) => query,
+  (courses, query) =>
+    courses.filter((course) =>
+      course.name.toLowerCase().includes(query.toLocaleLowerCase())
+    )
+);
+
 interface IState {
   courses: course.Model[];
 }

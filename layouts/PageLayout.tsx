@@ -1,4 +1,9 @@
-import { useState, MouseEventHandler, ChangeEventHandler } from 'react';
+import {
+  useState,
+  MouseEventHandler,
+  ChangeEventHandler,
+  Dispatch,
+} from 'react';
 import Head from 'next/head';
 import {
   Navigation,
@@ -10,6 +15,8 @@ import {
 } from '../components';
 
 import type { ReactNode } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import * as searchActinos from '../store/search';
 
 interface PageLayoutProps {
   pageTitle: string;
@@ -19,15 +26,16 @@ interface PageLayoutProps {
 }
 
 const PageLayout = (props: PageLayoutProps) => {
+  const dispatch: Dispatch<any> = useDispatch();
   const [isMainNavActive, setIsMainNavActive] = useState<boolean>(false);
-  const [searchQuery, setSearchQuery] = useState<string>('');
+  const searchQuery = useSelector(searchActinos.selectSearch);
 
   const toggleMainNavActivation: MouseEventHandler<HTMLOrSVGElement> = () => {
     setIsMainNavActive((prev) => !prev);
   };
 
   const onSearchChange: ChangeEventHandler<HTMLInputElement> = (event) => {
-    setSearchQuery(event.target.value);
+    dispatch(searchActinos.set(event.target.value));
   };
 
   return (

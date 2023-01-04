@@ -7,11 +7,16 @@ import { useAuth } from '../hooks';
 import * as userActions from '../store/user';
 import * as courseActions from '../store/course';
 import * as authActions from '../store/auth';
+import * as searchActions from '../store/search';
+import { RootState } from '../store';
 
 const CoursesPage: NextPage = () => {
   const { toggleAuthActivation } = useAuth();
   const dispatch: Dispatch<any> = useDispatch();
-  const courses = useSelector(courseActions.selectAllCourses);
+  const searchQuery = useSelector(searchActions.selectSearch);
+  const filteredCourses = useSelector((state: RootState) =>
+    courseActions.selectCoursesWithTitle(state, searchQuery)
+  );
   const isAuthActive = useSelector(authActions.selectIsActive);
 
   useEffect(() => {
@@ -27,7 +32,7 @@ const CoursesPage: NextPage = () => {
     >
       <div className="min-h-screen">
         <div className="grid grid-cols-1 gap-14 md:grid-cols-3">
-          {courses.map((course) => (
+          {filteredCourses.map((course) => (
             <Card
               key={course.id}
               link="/"
