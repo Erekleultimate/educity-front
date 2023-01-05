@@ -5,23 +5,18 @@ import {
   useEffect,
   useState,
 } from 'react';
-import { NextPage, GetServerSideProps } from 'next';
+import { NextPage } from 'next';
 import { DashboardPageLayout } from '../../layouts';
 import { Input, Button } from '../../components';
 import { useDispatch, useSelector } from 'react-redux';
 import * as userActions from '../../store/user';
 import * as courseActions from '../../store/course';
-import { API_URL } from '../../utils/urls';
+import * as categoryActions from '../../store/category';
 
-interface UserDashboardPageProps {
-  categories: category.Model[];
-}
-
-const UserDashboardPage: NextPage<UserDashboardPageProps> = (
-  props: UserDashboardPageProps
-) => {
+const UserDashboardPage: NextPage = () => {
   const dispatch: Dispatch<any> = useDispatch();
   const user = useSelector(userActions.selectUser);
+  const categories = useSelector(categoryActions.selectAllCategories);
   const [inputs, setInputs] = useState<{
     category: string;
     name: string;
@@ -33,6 +28,7 @@ const UserDashboardPage: NextPage<UserDashboardPageProps> = (
   useEffect(() => {
     dispatch(userActions.setUser());
     dispatch(courseActions.setAllCourses());
+    dispatch(categoryActions.setCategories());
   }, [dispatch]);
 
   const onInputChange: ChangeEventHandler<
@@ -80,7 +76,7 @@ const UserDashboardPage: NextPage<UserDashboardPageProps> = (
           {/* <Input name="type" value={inputs.type} onChange={onInputChange} /> */}
           <select defaultValue="" name="category" onChange={onInputChange}>
             <option value="">--- აირჩიე კატეგორია ---</option>
-            {props.categories.map((category) => (
+            {categories.map((category) => (
               <option key={category._id} value={category._id}>
                 {category.title}
               </option>
@@ -100,19 +96,6 @@ const UserDashboardPage: NextPage<UserDashboardPageProps> = (
       </div>
     </DashboardPageLayout>
   );
-};
-
-export const getServerSideProps: GetServerSideProps<
-  UserDashboardPageProps
-> = async () => {
-  const categoriesResp = await fetch(`${API_URL}/category`);
-  const { data: categories } = await categoriesResp.json();
-
-  return {
-    props: {
-      categories,
-    },
-  };
 };
 
 export default UserDashboardPage;
