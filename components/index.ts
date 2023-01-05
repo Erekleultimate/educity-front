@@ -20,3 +20,5 @@ export { default as Input } from './input/Input';
 export { default as Error } from './error/Error';
 export { default as Courses } from './courses/Courses';
 export { default as Select } from './select/Select';
+export { default as Filter } from './filter/Filter';
+export { default as FilterSection } from './filter/FilterSection';
