@@ -72,11 +72,16 @@ export const selectAllCourses = createSelector(
 
 export const selectCoursesWithTitle = createSelector(
   ({ courses: state }: RootState) => state.courses,
-  (_: RootState, query: string) => query,
-  (courses, query) =>
-    courses.filter((course) =>
-      course.name.toLowerCase().includes(query.toLocaleLowerCase())
-    )
+  (_: RootState, filter: { query: string; category: category.Model | null }) =>
+    filter,
+  (courses, filter) =>
+    courses
+      .filter((course) =>
+        course.name.toLowerCase().includes(filter.query.toLocaleLowerCase())
+      )
+      .filter((course) =>
+        filter.category ? course.category === filter.category?._id : course
+      )
 );
 
 interface IState {

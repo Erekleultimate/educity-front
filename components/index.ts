@@ -22,3 +22,4 @@ export { default as Courses } from './courses/Courses';
 export { default as Select } from './select/Select';
 export { default as Filter } from './filter/Filter';
 export { default as FilterSection } from './filter/FilterSection';
+export { default as FilterItem } from './filter/FilterItem';

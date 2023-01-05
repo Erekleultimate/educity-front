@@ -1,6 +1,6 @@
 declare namespace course {
   interface Model {
-    id: string;
+    _id: string;
     img: string;
     place: string;
     name: string;
