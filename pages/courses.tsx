@@ -26,7 +26,10 @@ const CoursesPage: NextPage = () => {
       withSearch={true}
     >
       <div className="min-h-screen md:grid md:grid-cols-6 md:gap-14">
-        <Filter setActiveCategory={setActiveCategory} />
+        <Filter
+          activeCategory={activeCategory}
+          setActiveCategory={setActiveCategory}
+        />
         <div className="md:col-span-5">
           <Courses>
             {filteredCourses.map((course) => (

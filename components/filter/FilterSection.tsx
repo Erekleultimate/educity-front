@@ -4,6 +4,7 @@ import { FilterItem } from '../../components';
 interface FilterSecitonProps {
   title: string;
   items: { _id: string; title: string }[];
+  activeCategory: category.Model | null;
   setActiveCategory: Dispatch<SetStateAction<category.Model | null>>;
 }
 
@@ -16,6 +17,7 @@ const FilterSection = (props: FilterSecitonProps) => {
           <FilterItem
             key={item._id}
             item={item}
+            activeCategory={props.activeCategory}
             setActiveCategory={props.setActiveCategory}
           />
         ))}

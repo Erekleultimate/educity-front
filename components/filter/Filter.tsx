@@ -4,6 +4,7 @@ import { FilterSection } from '../../components';
 import * as categoryActions from '../../store/category';
 
 interface FilterProps {
+  activeCategory: category.Model | null;
   setActiveCategory: Dispatch<SetStateAction<category.Model | null>>;
 }
 
@@ -15,6 +16,7 @@ const Filter = (props: FilterProps) => {
       <FilterSection
         title="კატეგორიები"
         items={categories}
+        activeCategory={props.activeCategory}
         setActiveCategory={props.setActiveCategory}
       />
     </div>
