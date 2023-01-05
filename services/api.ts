@@ -2,6 +2,22 @@ import { API_URL } from '../utils/urls';
 
 const headers = new Headers();
 
+export const getAllCategories = () => {
+  return new Promise(
+    (resolve: (categories: category.Model[]) => void, reject) => {
+      fetch(`${API_URL}/category`)
+        .then(async (resp) => {
+          if (!resp.ok) {
+            reject(resp);
+          }
+          const { data: categories } = await resp.json();
+          resolve(categories);
+        })
+        .catch((err) => reject(err));
+    }
+  );
+};
+
 export const getAllCourses = () => {
   return new Promise((resolve: (courses: course.Model[]) => void, reject) => {
     fetch(`${API_URL}/course`)

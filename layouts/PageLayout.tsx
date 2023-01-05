@@ -23,6 +23,7 @@ import * as searchActinos from '../store/search';
 import * as authActions from '../store/auth';
 import * as userActions from '../store/user';
 import * as courseActions from '../store/course';
+import * as categoryActions from '../store/category';
 import { useAuth } from '../hooks';
 
 interface PageLayoutProps {
@@ -43,6 +44,7 @@ const PageLayout = (props: PageLayoutProps) => {
   useEffect(() => {
     dispatch(userActions.setUser());
     dispatch(courseActions.setAllCourses());
+    dispatch(categoryActions.setCategories());
   }, [user?.token, dispatch]);
 
   const toggleMainNavActivation: MouseEventHandler<HTMLOrSVGElement> = () => {
