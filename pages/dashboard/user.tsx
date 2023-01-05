@@ -7,7 +7,7 @@ import {
 } from 'react';
 import { NextPage } from 'next';
 import { DashboardPageLayout } from '../../layouts';
-import { Input, Button } from '../../components';
+import { Input, Button, Select } from '../../components';
 import { useDispatch, useSelector } from 'react-redux';
 import * as userActions from '../../store/user';
 import * as courseActions from '../../store/course';
@@ -73,15 +73,11 @@ const UserDashboardPage: NextPage = () => {
           onSubmit={(event) => event.preventDefault()}
           className="flex flex-col"
         >
-          {/* <Input name="type" value={inputs.type} onChange={onInputChange} /> */}
-          <select defaultValue="" name="category" onChange={onInputChange}>
-            <option value="">--- აირჩიე კატეგორია ---</option>
-            {categories.map((category) => (
-              <option key={category._id} value={category._id}>
-                {category.title}
-              </option>
-            ))}
-          </select>
+          <Select
+            items={categories}
+            name="category"
+            onInputChange={onInputChange}
+          />
           <Input name="name" value={inputs.name} onChange={onInputChange} />
           <Input name="place" value={inputs.place} onChange={onInputChange} />
           <Input name="price" value={inputs.price} onChange={onInputChange} />
