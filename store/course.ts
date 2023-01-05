@@ -29,7 +29,7 @@ export const createCourse = createAsyncThunk(
   async (
     {
       owner,
-      type,
+      category,
       name,
       place,
       price,
@@ -38,14 +38,14 @@ export const createCourse = createAsyncThunk(
       setImages,
     }: {
       owner: user.User;
-      type: string;
+      category: string;
       name: string;
       place: string;
       price: string;
       image: File;
       setInputs: (
         value: SetStateAction<{
-          type: string;
+          category: string;
           name: string;
           place: string;
           price: string;
@@ -56,9 +56,9 @@ export const createCourse = createAsyncThunk(
     {}
   ) => {
     api
-      .createCourse(owner, type, name, place, price, image)
+      .createCourse(owner, category, name, place, price, image)
       .then(() => {
-        setInputs({ type: '', name: '', place: '', price: '' });
+        setInputs({ category: '', name: '', place: '', price: '' });
         setImages(null);
       })
       .catch((err) => console.log(err.message));

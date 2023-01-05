@@ -5,7 +5,7 @@ import { CardData, CardImage } from '../../components';
 interface CardProps {
   link: string;
   img: string | StaticImageData;
-  type: string;
+  category: string;
   place: string;
   name: string;
   price: string;
@@ -17,7 +17,7 @@ const Card = (props: CardProps) => {
       <a className="col-span-1 rounded-t-3xl overflow-hidden shadow-lg transition duration-300 md:hover:scale-105">
         <CardImage img={props.img} />
         <CardData
-          type={props.type}
+          category={props.category}
           place={props.place}
           name={props.name}
           price={props.price}

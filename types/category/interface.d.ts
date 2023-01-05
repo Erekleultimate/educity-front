@@ -1,6 +1,6 @@
 declare namespace category {
   interface Model {
-    id: string;
+    _id: string;
     title: string;
   }
 }

@@ -1,5 +1,5 @@
 interface CardDataProps {
-  type: string;
+  category: string;
   place: string;
   name: string;
   price: string;
@@ -8,7 +8,7 @@ interface CardDataProps {
 const CardData = (props: CardDataProps) => {
   return (
     <div className="space-y-1 p-5 rounded-b-xl border border-gray-500">
-      <span>{props.type}</span>
+      <span>{props.category}</span>
       <h5>{props.place}</h5>
       <h3 className="text-xl">{props.name}</h3>
       <h4 className="text-xl font-bold space-x-1">

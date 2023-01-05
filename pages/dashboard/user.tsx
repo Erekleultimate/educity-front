@@ -23,11 +23,11 @@ const UserDashboardPage: NextPage<UserDashboardPageProps> = (
   const dispatch: Dispatch<any> = useDispatch();
   const user = useSelector(userActions.selectUser);
   const [inputs, setInputs] = useState<{
-    type: string;
+    category: string;
     name: string;
     place: string;
     price: string;
-  }>({ type: '', name: '', place: '', price: '' });
+  }>({ category: '', name: '', place: '', price: '' });
   const [images, setImages] = useState<FileList | undefined | null>(null);
 
   useEffect(() => {
@@ -35,7 +35,9 @@ const UserDashboardPage: NextPage<UserDashboardPageProps> = (
     dispatch(courseActions.setAllCourses());
   }, [dispatch]);
 
-  const onInputChange: ChangeEventHandler<HTMLInputElement> = (event) => {
+  const onInputChange: ChangeEventHandler<
+    HTMLInputElement | HTMLSelectElement
+  > = (event) => {
     setInputs((prev) => ({ ...prev, [event.target.name]: event.target.value }));
   };
 
@@ -44,7 +46,7 @@ const UserDashboardPage: NextPage<UserDashboardPageProps> = (
   };
 
   const onButtonClick: MouseEventHandler<HTMLButtonElement> = () => {
-    if (!inputs.type) return alert('ტიპი სავალდებულოა');
+    if (!inputs.category) return alert('კატეგორია სავალდებულოა');
     if (!inputs.name) return alert('სახელი სავალდებულოა');
     if (!inputs.place) return alert('ადგილი სავალდებულოა');
     if (!inputs.price) return alert('ფასი სავალდებულოა');
@@ -53,7 +55,7 @@ const UserDashboardPage: NextPage<UserDashboardPageProps> = (
     user &&
       dispatch(
         courseActions.createCourse({
-          type: inputs.type,
+          category: inputs.category,
           name: inputs.name,
           place: inputs.place,
           price: inputs.price,
@@ -76,9 +78,12 @@ const UserDashboardPage: NextPage<UserDashboardPageProps> = (
           className="flex flex-col"
         >
           {/* <Input name="type" value={inputs.type} onChange={onInputChange} /> */}
-          <select>
+          <select defaultValue="" name="category" onChange={onInputChange}>
+            <option value="">--- აირჩიე კატეგორია ---</option>
             {props.categories.map((category) => (
-              <option key={category.id}>{category.title}</option>
+              <option key={category._id} value={category._id}>
+                {category.title}
+              </option>
             ))}
           </select>
           <Input name="name" value={inputs.name} onChange={onInputChange} />

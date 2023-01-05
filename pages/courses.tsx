@@ -25,7 +25,7 @@ const CoursesPage: NextPage = () => {
               key={course.id}
               link="/"
               img={course.img}
-              type={course.type}
+              category={course.category}
               place={course.place}
               name={course.name}
               price={course.price}

@@ -18,7 +18,7 @@ export const getAllCourses = () => {
 
 export const createCourse = (
   owner: user.User,
-  type: string,
+  category: string,
   name: string,
   place: string,
   price: string,
@@ -28,7 +28,7 @@ export const createCourse = (
     headers.set('Authorization', `Bearer ${owner.token}`);
     const formData = new FormData();
     formData.append('owner', owner.email);
-    formData.append('type', type);
+    formData.append('category', category);
     formData.append('name', name);
     formData.append('place', place);
     formData.append('price', price);
