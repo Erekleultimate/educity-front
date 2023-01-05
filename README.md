@@ -15,4 +15,4 @@ NEXT_PUBLIC_API_URL
 NEXT_PUBLIC_CLIENT_URL
 ```
 
-Happy coding...
+Happy coding.
