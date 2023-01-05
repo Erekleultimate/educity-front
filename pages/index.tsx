@@ -20,7 +20,7 @@ const HomePage: NextPage = () => {
           <HeroRight />
         </Hero>
         <Courses>
-          {courses.map((course) => (
+          {courses.slice(0, 6).map((course) => (
             <Card
               key={course._id}
               link="/"
