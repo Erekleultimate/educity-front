@@ -1,5 +1,5 @@
-export { default as Navigation } from './navigaiton/Navigation';
-export { default as NavigationItem } from './navigaiton/NavigationItem';
+export { default as Navigation } from './navigation/Navigation';
+export { default as NavigationItem } from './navigation/NavigationItem';
 export { default as Times } from './icon/Times';
 export { default as Bars } from './icon/Bars';
 export { default as Button } from './button/Button';
@@ -11,7 +11,7 @@ export { default as CardImage } from './card/CardImage';
 export { default as CardData } from './card/CardData';
 export { default as Footer } from './footer/Footer';
 export { default as Logo } from './logo/Logo';
-export { default as MainNavigation } from './navigaiton/MainNavigation';
+export { default as MainNavigation } from './navigation/MainNavigation';
 export { default as Overlay } from './overlay/Overlay';
 export { default as SignIn } from './auth/SignIn';
 export { default as SignUp } from './auth/SignUp';
