@@ -22,7 +22,7 @@ const HomePage: NextPage = () => {
         <Courses>
           {courses.map((course) => (
             <Card
-              key={course.id}
+              key={course._id}
               link="/"
               img={course.img}
               category={course.category}
